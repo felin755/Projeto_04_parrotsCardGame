@@ -1,0 +1,89 @@
+
+.fundao {
+    background-color: #eef9bf;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.topo {
+    height: 140px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titulo {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 66px;
+    letter-spacing: -0.004em;
+    color: #75B79E;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    height: 146px;
+    width: 117px;
+    background-color: #A7E9AF;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+    margin-right: 34px;
+    margin-bottom: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: transform 0.2s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.espacamento {
+    background-color: #eef9bf;
+    height: 209px;
+}
+
+.container {
+    margin: 20px;
+    height: 146px;
+    width: 117px;
+    perspective: 1000px;
+}
+
+.front, .back {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+}
+
+
+.front img {
+    height: 100px;
+    width: 100px;
+}
+
+.back {
+
+    transform: rotateY(180deg);
+}
+
+.back img {
+    object-fit: cover;
+    height: 80px;
+    width: 80px;
+}
+
+

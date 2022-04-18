@@ -1,0 +1,169 @@
+let cont = 0
+while (cont < numCartas) {
+    let elemento = document.querySelector("ul")
+    elemento.innerHTML += `
+    <li class="container">
+        <div class="card" onclick="flip(event)">
+            <div class="front">
+                <img src="/Arquivos Úteis - Projeto 04 - Parrot Card Game/front.png">
+            </div>
+            <div class="back">
+                <img src="${baralho[cont].source}">
+            </div>
+        </div>
+    </li>
+    `
+    cont += 1
+}
+
+function flip(event){
+	let element = event.currentTarget;
+	if (element.className === "card") {
+        if(element.style.transform == "rotateY(180deg)") {
+            element.style.transform = "rotateY(0deg)";
+        }
+    else {
+      element.style.transform = "rotateY(180deg)";
+    }
+  }
+    
+}
+
+
+
+if (verificaSelecao !== null) {
+        elemento.classList.add("cartaClicada");
+        elemento.style.transform = "rotateY(180deg)";
+        clique ++
+        console.log(clique)
+    } 
+
+
+if (cartasConcluidas === numCartas/2) {
+                alert("Parabéns, você concluiu o jogo!")
+            }
+
+
+
+
+
+
+
+
+
+
+
+if (clique === 0 && elemento!==verificaSelecao) {
+        elemento.classList.add("cartaVirada")
+        elemento.style.transform = "rotateY(180deg)";
+        clique ++
+        numJogadas ++
+        cartasViradas.push(elemento)
+        console.log("numJogadas1:"+numJogadas)
+
+    } else if (clique === 1 && elemento!==verificaSelecao) {
+        elemento.classList.add("cartaVirada")
+        elemento.style.transform = "rotateY(180deg)";
+        cartasViradas.push(elemento)
+        clique --
+        numJogadas ++
+        console.log("numJogadas2:"+numJogadas)
+
+        if (cartasViradas[0].innerHTML !== cartasViradas[1].innerHTML) {
+
+
+            cartasViradas[0].style.transform = "rotateY(0deg)";
+            cartasViradas[1].style.transform = "rotateY(0deg)"; 
+            cartasViradas = []
+            console.log(`cartasviradasdepoisdacomparação${cartasViradas}`)
+        } else {
+            cartasConcluidas += 2
+            console.log("cartas concluidas:"+cartasConcluidas)
+            console.log("num de cartas:"+numCartas)
+            cartasViradas = []
+            if (cartasConcluidas === numCartas) {
+                alert("Parabéns, você concluiu o jogo!")
+            }
+            
+        }
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+if (clique === 0 && elemento!==verificaSelecao && elemento!==verificaConclusao) {
+        //alert("vc esta clicando pela primeira vez nessa carta!")
+        elemento.classList.add("cartaVirada")
+        elemento.style.transform = "rotateY(180deg)";
+        clique ++
+        numJogadas ++
+        cartasViradas.push(elemento)
+        console.log("numJogadas1:"+numJogadas)
+        console.log("Clique1:"+clique)
+
+    } 
+    
+    else if (clique===1 && elemento===verificaSelecao && elemento!==verificaConclusao) {
+        alert("vc está clicando numa carta já virada!")
+    }
+    
+    else if (clique === 1 && elemento!==verificaSelecao) {
+        
+        
+        console.log("Clique2:"+clique)
+        elemento.classList.add("cartaVirada")
+        elemento.style.transform = "rotateY(180deg)";
+        cartasViradas.push(elemento)
+        clique --
+        numJogadas ++
+        console.log("numJogadas2:"+numJogadas)
+        console.log("cartasViradas:"+cartasViradas)
+
+        if (cartasViradas[0].innerHTML !== cartasViradas[1].innerHTML) {
+            setTimeout(desvira(cartasViradas[0]),5000)
+            setTimeout(desvira(cartasViradas[1]),5000)
+            //desvira(cartasViradas[0])
+            //desvira(cartasViradas[1])
+            elemento.classList.remove("cartaVirada") 
+            cartasViradas[0].classList.remove("cartaVirada")
+            cartasViradas = []
+            //alert("Que pena, as cartas não são iguais!")
+            console.log(`cartasviradasdepoisdacomparação${cartasViradas}`)
+
+        } else if (cartasViradas[0].innerHTML === cartasViradas[1].innerHTML) {
+            elemento.classList.add(".carta-concluida")
+            cartasViradas[0].classList.add(".carta-concluida")
+            cartasConcluidas += 2
+            console.log("cartas concluidas:"+cartasConcluidas)
+            console.log("num de cartas:"+numCartas)
+            cartasViradas = []
+            //alert("Boa, as cartas são iguais!")
+            if (cartasConcluidas === numCartas) {
+                alert("Parabéns, você concluiu o jogo!")
+            }
+            
+        }
+        
+    } 
+    
+    else if (elemento===verificaConclusao) {
+        alert("Esta carta já está concluida!")
+
+    } 
+    
+    else if (elemento===verificaSelecao) {
+    
+        alert("vc esta clicando numa carta virada!")
+        console.log("cartasViradas:"+cartasViradas)
+
+    }  
